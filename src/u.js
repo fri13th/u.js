@@ -27,7 +27,6 @@
         return t;
     };
 
-    $.now = function(){return new Date().getTime()};
     $.inArray = function(el, arr, i) {return [].indexOf.call(arr, el, i)};
     $.extend = function() {
         var base = arguments[0];

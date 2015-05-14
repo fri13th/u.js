@@ -2,13 +2,34 @@
 
     // precompile must be available
     // var data = {name: "fri13th", nick: "teru", list: ["abc", "def", "ghi"], obj: {title: "subtitle"}};
-    // {{name}}, {{list[0]}}, {{obj.title}}
+    // {{this.name}}, {{this.list[0]}}, {{obj.title}}
     // {{name|sanitize}} {{name|safe}} {{name|timestamp:YYMMDD}}
     // {% if name == "fri13th" %}<div> welcome, fri13th!</div>{% endif %}
     // {% foreach list as item %}<li>{{item}}</li>{% endfor %}
+    // below 5k
+
+
+    // underscore is right way
+    // look hogan
+
 
 
     $.tmpl = function tmpl(str){
+
+        var src = "source";
+        var fn = new Function(src);
+
+
+
+        // compile and execute
+        //var newfn = fn.bind(txt); newfn();
+        // use bind for attach variables to this
+        fn.prototype.source = "source";
+        // generate by source
+        fn.prototype.compile = function(data) {};
+
+
+
 
         // we have to provide two thing, compile or render, source for printing precompiled function
         //var fn =
