@@ -2,6 +2,8 @@
 (function($){
 
     window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(m){return setTimeout(m, 1000/60)};
+
+    // easing function is not good, must be optimized
     var ease = { // this has some bug. need to use more calculative one
         'linear'            : [0,0,1,1],
         'ease'              : [.25,.1,.25,1],
