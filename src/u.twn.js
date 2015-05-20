@@ -18,26 +18,28 @@
         easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
     };
     $.twn = {
-        ani: function(options) { // we need options extend
-            var defaults = {startTime: $.now(), stopTime: 0, duration: 500, begin:0, end:1, finished: false, easing: "linear", stop: false, run:function(e,o){}, finish:function(){}, options:{}};
+        ani: function(options) {
+            var defaults = {duration: 500, begin:0, end:1, delay: 0, easing: "linear", run: function(easing, options){}, finish: function(){}, options: {}};
             var settings = $.extend({}, defaults, options);
+            var startTime = $.now(), stopTime = 0, stop = false, finished = false,
+                b = settings.begin,
+                c = settings.end - settings.begin,
+                d = settings.duration;
 
-            function easing(){
-                var t = $.now() - settings.startTime,
-                    b = settings.begin,
-                    c = settings.end - settings.begin,
-                    d = settings.duration;
-                settings.finished = (t > d);
+            function easing() {
+                var t = $.now() - startTime;
+                finished = (t > d);
                 return b + $.ease[settings.easing](t/d)*c;
             }
             function run() {
                 settings.run(easing(), settings.options);
-                settings.finished ? settings.finish() : !settings.stop ? requestAnimationFrame(run) : null;
+                finished ? settings.finish() : !stop ? requestAnimationFrame(run) : null;
             }
-            run();
+            (settings.delay) ? setTimeout(function(){startTime = $.now(); run();}, settings.delay) : run();
+
             return {
-                stop : function(){settings.stop = true; settings.stopTime = $.now() - settings.startTime},
-                resume : function(){settings.stop = false; settings.startTime = $.now() - settings.stopTime; run()}
+                stop : function(){stop = true; stopTime = $.now() - startTime},
+                resume : function(){stop = false; startTime = $.now() - stopTime; run()}
             };
         }
     }
