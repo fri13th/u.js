@@ -4,6 +4,7 @@
     window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(m){return setTimeout(m, 1000/60)};
     $.ease = {
         linear: function (t) { return t },
+        swing: function(t) {return -Math.cos(t*Math.PI)/2+0.5},
         easeInQuad: function (t) { return t*t },
         easeOutQuad: function (t) { return t*(2-t) },
         easeInOutQuad: function (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t },
