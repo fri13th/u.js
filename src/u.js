@@ -32,7 +32,7 @@
         var base = arguments[0];
         for (var i = 1; i < arguments.length; i++){
             var sub = arguments[i];
-            for(var j in sub) base[j] = sub[j];
+            for(var j in sub) if (sub.hasOwnProperty(j)) base[j] = sub[j];
         }
         return base;
     };

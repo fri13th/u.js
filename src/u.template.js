@@ -4,6 +4,7 @@
     // var data = {name: "fri13th", nick: "teru", list: ["abc", "def", "ghi"], obj: {title: "subtitle"}};
     // {{this.name}}, {{this.list[0]}}, {{obj.title}}
     // {{name|sanitize}} {{name|safe}} {{name|timestamp:YYMMDD}}
+    // {% if (name == "fri13th") { %}<div> welcome, fri13th!</div>{% } %}
     // {% if name == "fri13th" %}<div> welcome, fri13th!</div>{% endif %}
     // {% foreach list as item %}<li>{{item}}</li>{% endfor %}
     // below 5k
@@ -14,6 +15,8 @@
 
 
 
+    // add eval and work..
+    //
     $.tmpl = function tmpl(str){
 
         var src = "source";
